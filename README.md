@@ -1,20 +1,97 @@
+# Intensive-Capstone-Design
 
+  2020-2학기 심화 캡스톤디자인 프로젝트
 
-# NaTaNee
+<br>
 
+## 개발자
 
+* imsoncod
 
-## Usage
+* Raison-CJH
 
+<br>
 
+## 프로젝트 진행 과정 기록
 
-## Developing
+### 📅 2020-08-31 ~ 2020-09-06
 
+* [분야 선정]
 
+  * 카카오 i 오픈빌더를 이용한 챗봇 개발
 
-### Tools
+* [아이디어 선정]
 
-Created with [Nodeclipse](https://github.com/Nodeclipse/nodeclipse-1)
- ([Eclipse Marketplace](http://marketplace.eclipse.org/content/nodeclipse), [site](http://www.nodeclipse.org))   
+  * 교내 학생들에게 도움을 주기 위한 챗봇 개발
 
-Nodeclipse is free open-source project that grows with your contributions.
+<br>
+
+### 📅 2020-09-07 ~ 2020-09-13
+
+* [프로젝트 목적]
+
+  * 他 홍보 매체(블로그, 페이스북, 유튜브)와 더불어 ‘인하공업전문대학’을 많은 사람들에게 홍보하여 브랜드가치를 상승시킨다.
+  
+  * 대중들에게 익숙한 ‘카카오톡’을 통해 접근함으로써 누구나 이용이 쉽도록 한다.
+  
+  * 現 ‘인하공업전문대학’App으로는 접근이 어렵거나 불편함이 있는 사항들을 개선시킨다.
+  
+  * 학교에서 운영 중이지만 많은 재학생들이 모르고 있는 컨텐츠의 이용을 활발하게 한다.
+  
+  * 향후 다양한 문의를 수락하고 해결할 수 있는 소통창구로 발전시킨다. 
+
+* [기능 구성도]
+
+  ![image](https://user-images.githubusercontent.com/48934537/93453223-5f321000-f914-11ea-8ce0-7533ace58ad9.png)
+  
+* [개발 세부 내용]
+
+  * 챗봇
+  
+    * 카카오 i 오픈빌더를 이용하여 기능구성도에 맞게 시나리오 작성 (뎁스 최소화)
+    
+    * 스킬서버와 챗봇간 Http통신으로 요청/응답 -> 데이터 제공
+    
+  * 채널
+  
+    * 카카오톡 채널 관리자 센터를 통해 채널 관리
+    
+    * Master : imsoncod / Manager : Raison-CJH 으로 나누어 공동 관리
+    
+  * 서버
+  
+    * RestAPI 서버 구축, 문서화
+    
+    * 배포, 테스팅 자동화 처리
+    
+    * 데이터들은 대부분 크롤링을 통해 수집
+    
+  * 디자인 및 브랜딩
+  
+    * 모두가 알아보기 쉽게 깔끔하게 디자인, 배치
+    
+    * 챗봇 이름, 캐릭터 등 추후 결정
+
+<br>
+
+### 📅 2020-09-14 ~ 2020-09-20
+
+* [카카오 i 오픈빌더]
+
+  * 시나리오 및 블록 등록 완료
+  
+  * 스킬서버 연동 및 테스팅 완료
+
+* [서버]
+
+  * Nodejs 스킬서버 구축 완료
+
+  * 크롤링 테스팅 완료
+  
+* [기획]
+
+  * 챗봇 및 공식 캐릭터 명칭 선정 완료 "나타비(NaTaBee)"
+  
+  * 캐릭터 디자인 완료
+  
+    ![image](https://user-images.githubusercontent.com/48934537/93735137-e46c3c00-fc16-11ea-8951-c82151404324.png)
