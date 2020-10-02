@@ -521,18 +521,20 @@ router.post('/book', function(req, res, next) {
 });
 
 
-/* 식당메뉴 - 교직원*/
+/* 식당메뉴 - 학생 */
 
-router.post('/menu/professor', function(req, res, next) {
-	  let url = 'https://cms.itc.ac.kr/site/inhatc/foodList.do?key=903&type=2&part=000';
+router.post('/menu/student', function(req, res, next) {
+	  let url = 'https://cms.itc.ac.kr/site/inhatc/foodList.do?key=902&type=1&part=000';
+	  
+	  var week = new Array('일','월','화','수','목','금','토');
 	  
 	  var today = new Date(); 
 	  var year = today.getFullYear(); 
 	  var month = new String(today.getMonth()+1); 
 	  var date = new String(today.getDate());
-	  var day;
+	  var day = week[today.getDay()];
 
-	  // 한자리수일 경우 0을 채워준다. 
+	  // 한자리수일 경우 0을 채워준다.
 	  if(month.length == 1){ 
 	    month = "0" + month; 
 	  } 
@@ -548,67 +550,351 @@ router.post('/menu/professor', function(req, res, next) {
 	    const $bodyList = $("table.cts_table tbody tr");	    
 	    var td;
 	    
-	    var strong_text;
-	    var lunch_korean;
-	    var lunch_special;
-	    var dinner;
+	    var food_1='운영없음\n';
+	    var food_2='운영없음\n';
+	    var food_3='운영없음\n';
+	    
+	    var op_check = false;
 	    
 	    $bodyList.each(function(i, elem) {
 	    	td = $(this);
 	    	if(td.find('td:nth-of-type(1)').text() == full_date){
-	    		day = td.find('td:nth-of-type(2)').text().trim();
-	  	      	lunch_korean = td.find('td:nth-of-type(3)').text();
-	  	      	lunch_special = td.find('td:nth-of-type(4)').text();
-	  	      	dinner = td.find('td:nth-of-type(5)').text();
+	    		op_check = true;
+
+	    		food_1 = td.find('td:nth-of-type(3)').html();
+	    		food_2 = td.find('td:nth-of-type(4)').html();
+	    		food_3 = td.find('td:nth-of-type(5)').html();
 	    	}
 	    });
 	    
-	    if(lunch_korean.trim() == '운영없음'){
-	    	lunch_korean = '운영없음';
-	    }else{
-	    	lunch_korean = lunch_korean.replace('  ', '\n');
-	    	if(lunch_korean.charAt(lunch_korean.length-1) == '\n'){
-		    	lunch_korean = lunch_korean.slice(0,-1);
+	    if(op_check == true){
+	    	var strong_text;
+		    var temp;
+		    
+		    //food_1
+		    strong_text = food_1.match('<strong>' + '(.*?)' + '</strong>')[1];
+		    temp = food_1.split('<br>');
+		    if(temp[temp.length-1] == ''){
+		    	temp.pop();
+		    }
+		    
+		    food_1 = strong_text + '\n';
+		    
+		    for(var i = 1; i < temp.length; i++){
+		    	temp[i] = temp[i].trim().replace('\n', '');
+		    	if(temp[i] != 'null' && temp[i] != '&#xA0;'){
+		    		food_1 += temp[i] + '\n';
+		    	}
+		    }
+		    
+		    //food_2
+		    strong_text = food_2.match('<strong>' + '(.*?)' + '</strong>')[1];
+		    temp = food_2.split('<br>');
+		    if(temp[temp.length-1] == ''){
+		    	temp.pop();
+		    }
+		    
+		    food_2 = strong_text + '\n';
+		    
+		    for(var i = 1; i < temp.length; i++){
+		    	temp[i] = temp[i].trim().replace('\n', '');
+		    	if(temp[i] != 'null' && temp[i] != '&#xA0;'){
+		    		food_2 += temp[i] + '\n';
+		    	}
+		    }
+		    
+		    //food_3
+		    strong_text = food_3.match('<strong>' + '(.*?)' + '</strong>')[1];
+		    temp = food_3.split('<br>');
+		    if(temp[temp.length-1] == ''){
+		    	temp.pop();
+		    }
+		    
+		    food_3 = strong_text + '\n';
+		    
+		    for(var i = 1; i < temp.length; i++){
+		    	temp[i] = temp[i].trim().replace('\n', '');
+		    	if(temp[i] != 'null' && temp[i] != '&#xA0;'){
+		    		food_3 += temp[i] + '\n';
+		    	}
 		    }
 	    }
+  
 	    
-	    if(lunch_special.trim() == '운영없음'){
-	    	lunch_special = '운영없음';
-	    }else{
-	    	lunch_special = lunch_special.replace('  ', '\n');
-	    	if(lunch_special.charAt(lunch_special.length-1) == '\n'){
-		    	lunch_special = lunch_special.slice(0,-1);
-		    }
-	    }
-	    
-	    if(dinner.trim() == '운영없음'){
-	    	dinner = '운영없음';
-	    }else{
-	    	dinner = dinner.replace('  ', '\n');
-	    	if(dinner.charAt(dinner.length-1) == '\n'){
-		    	dinner = dinner.slice(0,-1);
-		    }
-	    }
-   
-	    var output_text = '🥄' + full_date + '(' + day + ')' + ' 교직원 식당 메뉴🥢\n\n' + 
-	    				  '[중식 - 한식]\n' + lunch_korean + '\n\n' +
-	    				  '[중식 - 특식]\n' + lunch_special + '\n\n' +
-	    				  '[석식]\n' + dinner + '\n\n';
-	    
+	    var output_text = '🥄' + full_date + '(' + day + ')' + ' 학생 식당 메뉴🥢\n\n' + 
+		  '[일품]\n' + food_1.slice(0,-1) + '\n\n' +
+		  '[양식]\n' + food_2.slice(0,-1) + '\n\n' +
+		  '[정식]\n' + food_3.slice(0,-1) + '\n\n';
+
 	    res.status(200).json(
-    			{
-    			    "version": "2.0",
-    			    "template": {
-    			        "outputs": [
-    			            {
-    			                "simpleText": {
-    			                    "text": output_text
-    			                }
-    			            }
-    			        ]
-    			    }
-    			}
-    	);
+	    		{
+	    			"version": "2.0",
+	    			"template": {
+	    				"outputs": [
+	    					{
+	    						"simpleText": {
+	    							"text": output_text
+	    						}
+	    					}
+	    				]
+	    			}
+	    		}
+	    );
+	    
+	})
+});
+
+
+/* 식당메뉴 - 교직원 */
+
+router.post('/menu/professor', function(req, res, next) {
+	  let url = 'https://cms.itc.ac.kr/site/inhatc/foodList.do?key=903&type=2&part=000';
+	  
+	  var week = new Array('일','월','화','수','목','금','토');
+	  
+	  var today = new Date(); 
+	  var year = today.getFullYear(); 
+	  var month = new String(today.getMonth()+1); 
+	  var date = new String(today.getDate());
+	  var day = week[today.getDay()];
+
+	  // 한자리수일 경우 0을 채워준다.
+	  if(month.length == 1){ 
+	    month = "0" + month; 
+	  } 
+	  if(date.length == 1){ 
+	    date = "0" + date; 
+	  } 
+	  
+	  let full_date = String(year) + '.' + month + '.' + date;
+	  
+	  axios.get(url).then(html => {
+	    let ulList = [];
+	    const $ = cheerio.load(html.data);
+	    const $bodyList = $("table.cts_table tbody tr");	    
+	    var td;
+	    
+	    var food_1='운영없음\n';
+	    var food_2='운영없음\n';
+	    var food_3='운영없음\n';
+	    
+	    var op_check = false;
+	    
+	    $bodyList.each(function(i, elem) {
+	    	td = $(this);
+	    	if(td.find('td:nth-of-type(1)').text() == full_date){
+	    		op_check = true;
+
+	    		food_1 = td.find('td:nth-of-type(3)').html();
+	    		food_2 = td.find('td:nth-of-type(4)').html();
+	    		food_3 = td.find('td:nth-of-type(5)').html();
+	    	}
+	    });
+	    
+	    if(op_check == true){
+	    	var strong_text;
+		    var temp;
+		    
+		    //food_1
+		    strong_text = food_1.match('<strong>' + '(.*?)' + '</strong>')[1];
+		    temp = food_1.split('<br>');
+		    
+		    if(temp[temp.length-1] == ''){
+		    	temp.pop();
+		    }
+		    
+		    food_1 = strong_text + '\n';
+		    
+		    for(var i = 1; i < temp.length; i++){
+		    	temp[i] = temp[i].trim().replace('\n', '');
+		    	if(temp[i] != 'null' && temp[i] != '&#xA0;'){
+		    		food_1 += temp[i] + '\n';
+		    	}
+		    }
+		    
+		    //food_2
+		    strong_text = food_2.match('<strong>' + '(.*?)' + '</strong>')[1];
+		    temp = food_2.split('<br>');
+		    if(temp[temp.length-1] == ''){
+		    	temp.pop();
+		    }
+		    
+		    food_2 = strong_text + '\n';
+		    
+		    for(var i = 1; i < temp.length; i++){
+		    	temp[i] = temp[i].trim().replace('\n', '');
+		    	if(temp[i] != 'null' && temp[i] != '&#xA0;'){
+		    		food_2 += temp[i] + '\n';
+		    	}
+		    }
+		    
+		    //food_3
+		    strong_text = food_3.match('<strong>' + '(.*?)' + '</strong>')[1];
+		    temp = food_3.split('<br>');
+		    if(temp[temp.length-1] == ''){
+		    	temp.pop();
+		    }
+		    
+		    food_3 = strong_text + '\n';
+		    
+		    for(var i = 1; i < temp.length; i++){
+		    	temp[i] = temp[i].trim().replace('\n', '');
+
+		    	if(temp[i] != 'null' && temp[i] != '&#xA0;'){
+		    		food_3 += temp[i] + '\n';
+		    		console.log(temp[i]);
+		    	}
+		    }
+	    }
+  
+	    
+	    var output_text = '🥄' + full_date + '(' + day + ')' + ' 교직원 식당 메뉴🥢\n\n' + 
+		  '[중식 - 한식]\n' + food_1.slice(0,-1) + '\n\n' +
+		  '[중식 - 특식]\n' + food_2.slice(0,-1) + '\n\n' +
+		  '[석식]\n' + food_3.slice(0,-1) + '\n\n';
+
+	    res.status(200).json(
+	    		{
+	    			"version": "2.0",
+	    			"template": {
+	    				"outputs": [
+	    					{
+	    						"simpleText": {
+	    							"text": output_text
+	    						}
+	    					}
+	    					]
+	    			}
+	    		}
+	    );
+	    
+	})
+});
+
+
+/* 식당메뉴 - 인하대 학식 - 제작중*/
+
+router.post('/menu/inha', function(req, res, next) {
+	  let url = 'https://www.inha.ac.kr/kr/1073/subview.do';
+	  
+	  var week = new Array('일','월','화','수','목','금','토');
+	  
+	  var today = new Date(); 
+	  var year = today.getFullYear(); 
+	  var month = new String(today.getMonth()+1); 
+	  var date = new String(today.getDate());
+	  var day = week[today.getDay()];
+
+	  // 한자리수일 경우 0을 채워준다.
+	  if(month.length == 1){ 
+	    month = "0" + month; 
+	  } 
+	  if(date.length == 1){ 
+	    date = "0" + date; 
+	  } 
+	  
+	  let full_date = month + '.' + date + '.';
+	  
+	  axios.get(url).then(html => {
+	    let ulList = [];
+	    const $ = cheerio.load(html.data);
+	    const $bodyList = $("#viewForm");	    
+	    var td;
+	    
+	    var food_1='운영없음\n';
+	    var food_2='운영없음\n';
+	    var food_3='운영없음\n';
+	    
+	    var op_check = false;
+	    
+	    $bodyList.each(function(i, elem) {
+	    	td = $(this);
+	    	if(td.find('td:nth-of-type(1)').text() == full_date){
+	    		op_check = true;
+
+	    		food_1 = td.find('td:nth-of-type(3)').html();
+	    		food_2 = td.find('td:nth-of-type(4)').html();
+	    		food_3 = td.find('td:nth-of-type(5)').html();
+	    	}
+	    });
+	    
+	    if(op_check == true){
+	    	var strong_text;
+		    var temp;
+		    
+		    //food_1
+		    strong_text = food_1.match('<strong>' + '(.*?)' + '</strong>')[1];
+		    temp = food_1.split('<br>');
+		    
+		    if(temp[temp.length-1] == ''){
+		    	temp.pop();
+		    }
+		    
+		    food_1 = strong_text + '\n';
+		    
+		    for(var i = 1; i < temp.length; i++){
+		    	temp[i] = temp[i].trim().replace('\n', '');
+		    	if(temp[i] != 'null' && temp[i] != '&#xA0;'){
+		    		food_1 += temp[i] + '\n';
+		    	}
+		    }
+		    
+		    //food_2
+		    strong_text = food_2.match('<strong>' + '(.*?)' + '</strong>')[1];
+		    temp = food_2.split('<br>');
+		    if(temp[temp.length-1] == ''){
+		    	temp.pop();
+		    }
+		    
+		    food_2 = strong_text + '\n';
+		    
+		    for(var i = 1; i < temp.length; i++){
+		    	temp[i] = temp[i].trim().replace('\n', '');
+		    	if(temp[i] != 'null' && temp[i] != '&#xA0;'){
+		    		food_2 += temp[i] + '\n';
+		    	}
+		    }
+		    
+		    //food_3
+		    strong_text = food_3.match('<strong>' + '(.*?)' + '</strong>')[1];
+		    temp = food_3.split('<br>');
+		    if(temp[temp.length-1] == ''){
+		    	temp.pop();
+		    }
+		    
+		    food_3 = strong_text + '\n';
+		    
+		    for(var i = 1; i < temp.length; i++){
+		    	temp[i] = temp[i].trim().replace('\n', '');
+
+		    	if(temp[i] != 'null' && temp[i] != '&#xA0;'){
+		    		food_3 += temp[i] + '\n';
+		    		console.log(temp[i]);
+		    	}
+		    }
+	    }
+  
+	    
+	    var output_text = '🥄' + full_date + '(' + day + ')' + ' 교직원 식당 메뉴🥢\n\n' + 
+		  '[중식 - 한식]\n' + food_1.slice(0,-1) + '\n\n' +
+		  '[중식 - 특식]\n' + food_2.slice(0,-1) + '\n\n' +
+		  '[석식]\n' + food_3.slice(0,-1) + '\n\n';
+
+	    res.status(200).json(
+	    		{
+	    			"version": "2.0",
+	    			"template": {
+	    				"outputs": [
+	    					{
+	    						"simpleText": {
+	    							"text": output_text
+	    						}
+	    					}
+	    					]
+	    			}
+	    		}
+	    );
+	    
 	})
 });
 
