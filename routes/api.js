@@ -55,6 +55,29 @@ router.post('/dept', function(req, res){
 	};
 	
 	var dept_code = dept_array[dept];
+	if(dept_code == undefined){
+		res.status(200).json(
+				{
+    			    "version": "2.0",
+    			    "template": {
+    			        "outputs": [
+    			            {
+    			                "simpleText": {
+    			                    "text": "알 수 없는 학과명입니다."
+    			                }
+    			            }
+    			        ],
+    			        "quickReplies": [
+		                	{
+		                		"action" : "block",
+		                		"label" : "이전",
+		                		"blockId" : "5f65a07c011936335d332e63"
+		                	}
+		                ]
+    			    }
+    			}
+		);
+	}
 	var url = "https://cms.itc.ac.kr/site/ipsi/sub.do?key=" + dept_code;
 	
 	res.status(200).json(		
@@ -68,7 +91,7 @@ router.post('/dept', function(req, res){
 			                    "buttons": [
 			                        {
 			                            "action": "webLink",
-			                            "label": "'" + dept + " '소개 보러가기",
+			                            "label": '소개 사이트 이동',
 			                            "webLinkUrl": url
 			                        }
 			                    ]
@@ -80,11 +103,6 @@ router.post('/dept', function(req, res){
 	                		"action" : "block",
 	                		"label" : "이전",
 	                		"blockId" : "5f65a07c011936335d332e63"
-	                	},
-	                	{
-	                		"action" : "block",
-	                		"label" : "처음으로",
-	                		"blockId" : "5f6372c219af3d48a46c9e7a"
 	                	}
 	                ]
 			    }
@@ -162,7 +180,14 @@ router.post('/notice/admission', function(req, res, next) {
 	    			          ]
 	    			        }
 	    			      }
-	    			    ]
+	    			    ],
+	    			    "quickReplies": [
+		                	{
+		                		"action" : "block",
+		                		"label" : "이전",
+		                		"blockId" : "5f6465441f96670bd416201c"
+		                	}
+		                ]
 	    			  }
 	    			}
 	    );
@@ -238,7 +263,14 @@ router.post('/notice/campuslife', function(req, res, next) {
 	    			          ]
 	    			        }
 	    			      }
-	    			    ]
+	    			    ],
+	    			    "quickReplies": [
+		                	{
+		                		"action" : "block",
+		                		"label" : "이전",
+		                		"blockId" : "5f6465aa6c2427307fbe0872"
+		                	}
+		                ]
 	    			  }
 	    			}
 	    );
@@ -280,7 +312,14 @@ router.post('/phone/name', function(req, res, next) {
 	    			                    "text": "검색 결과가 없습니다"
 	    			                }
 	    			            }
-	    			        ]
+	    			        ],
+	    			        "quickReplies": [
+			                	{
+			                		"action" : "block",
+			                		"label" : "이전",
+			                		"blockId" : "5f65acaf9d06b973d74f8602"
+			                	}
+			                ]
 	    			    }
 	    			}
 	    	);
@@ -298,7 +337,14 @@ router.post('/phone/name', function(req, res, next) {
 		    			          "items": data
 		    			        }
 		    			      }
-		    			    ]
+		    			    ],
+		    			    "quickReplies": [
+			                	{
+			                		"action" : "block",
+			                		"label" : "이전",
+			                		"blockId" : "5f65acaf9d06b973d74f8602"
+			                	}
+			                ]
 		    			  }
 		    			}
 		    );
@@ -323,7 +369,14 @@ router.post('/phone/name', function(req, res, next) {
 		    			          ]
 		    			        }
 		    			      }
-		    			    ]
+		    			    ],
+		    			    "quickReplies": [
+			                	{
+			                		"action" : "block",
+			                		"label" : "이전",
+			                		"blockId" : "5f65acaf9d06b973d74f8602"
+			                	}
+			                ]
 		    			  }
 		    			}
 		    );
@@ -369,7 +422,14 @@ router.post('/phone/dept', function(req, res, next) {
 	    			                    "text": "검색 결과가 없습니다"
 	    			                }
 	    			            }
-	    			        ]
+	    			        ],
+	    			        "quickReplies": [
+			                	{
+			                		"action" : "block",
+			                		"label" : "이전",
+			                		"blockId" : "5f65acaf9d06b973d74f8602"
+			                	}
+			                ]
 	    			    }
 	    			}
 	    	);
@@ -387,7 +447,14 @@ router.post('/phone/dept', function(req, res, next) {
 		    			          "items": data
 		    			        }
 		    			      }
-		    			    ]
+		    			    ],
+		    			    "quickReplies": [
+			                	{
+			                		"action" : "block",
+			                		"label" : "이전",
+			                		"blockId" : "5f65acaf9d06b973d74f8602"
+			                	}
+			                ]
 		    			  }
 		    			}
 		    );
@@ -412,7 +479,14 @@ router.post('/phone/dept', function(req, res, next) {
 		    			          ]
 		    			        }
 		    			      }
-		    			    ]
+		    			    ],
+		    			    "quickReplies": [
+			                	{
+			                		"action" : "block",
+			                		"label" : "이전",
+			                		"blockId" : "5f65acaf9d06b973d74f8602"
+			                	}
+			                ]
 		    			  }
 		    			}
 		    );
@@ -424,7 +498,7 @@ router.post('/phone/dept', function(req, res, next) {
 
 /* 도서관 - 도서검색 */
 
-router.post('/book', function(req, res, next) {
+router.post('/library', function(req, res, next) {
 	
 	var book_name = req.body.action.params.book_name;
 	
@@ -469,7 +543,14 @@ router.post('/book', function(req, res, next) {
 	    			                    "text": "검색 결과가 없습니다"
 	    			                }
 	    			            }
-	    			        ]
+	    			        ],
+	    			        "quickReplies": [
+			                	{
+			                		"action" : "block",
+			                		"label" : "이전",
+			                		"blockId" : "5f65ad656b1a753222a0be7b"
+			                	}
+			                ]
 	    			    }
 	    			}
 	    	);
@@ -487,7 +568,14 @@ router.post('/book', function(req, res, next) {
 		    			          "items": data
 		    			        }
 		    			      }
-		    			    ]
+		    			    ],
+		    			    "quickReplies": [
+			                	{
+			                		"action" : "block",
+			                		"label" : "이전",
+			                		"blockId" : "5f65ad656b1a753222a0be7b"
+			                	}
+			                ]
 		    			  }
 		    			}
 		    );
@@ -512,13 +600,58 @@ router.post('/book', function(req, res, next) {
 		    			          ]
 		    			        }
 		    			      }
-		    			    ]
+		    			    ],
+		    			    "quickReplies": [
+			                	{
+			                		"action" : "block",
+			                		"label" : "이전",
+			                		"blockId" : "5f65ad656b1a753222a0be7b"
+			                	}
+			                ]
 		    			  }
 		    			}
 		    );
 	    }
 	})
 });
+
+
+/* 도서관 - 좌석 예약 및 사용 현황 */
+router.post('/library/seat', function(req, res){
+	var user_id = req.body.action.params.user_id;
+	
+	var url = "http://221.154.90.171:8085/MA/roomList.php?userId=" + user_id;
+
+	res.status(200).json(		
+			{
+			    "version": "2.0",
+			    "template": {
+			        "outputs": [
+			            {
+			                "basicCard": {
+			                    "description": "입력 학번 : " + user_id,
+			                    "buttons": [
+			                        {
+			                            "action": "webLink",
+			                            "label": '사이트 이동',
+			                            "webLinkUrl": url
+			                        }
+			                    ]
+			                }
+			            }
+			        ],
+			        "quickReplies": [
+	                	{
+	                		"action" : "block",
+	                		"label" : "이전",
+	                		"blockId" : "5f65ad656b1a753222a0be7b"
+	                	}
+	                ]
+			    }
+			}
+	);	
+});
+
 
 
 /* 식당메뉴 - 학생 */
@@ -636,7 +769,14 @@ router.post('/menu/student', function(req, res, next) {
 	    							"text": output_text
 	    						}
 	    					}
-	    				]
+	    				],
+	    				"quickReplies": [
+		                	{
+		                		"action" : "block",
+		                		"label" : "이전",
+		                		"blockId" : "5f65add31f96670bd416210c"
+		                	}
+		                ]
 	    			}
 	    		}
 	    );
@@ -644,6 +784,12 @@ router.post('/menu/student', function(req, res, next) {
 	})
 });
 
+
+function decodeHTML(str){
+    return str.replace(/&#([0-9]{1,3});/gi, function(match, num) {
+        return String.fromCharCode(parseInt(num));
+    });
+}
 
 /* 식당메뉴 - 교직원 */
 
@@ -670,8 +816,8 @@ router.post('/menu/professor', function(req, res, next) {
 	  
 	  axios.get(url).then(html => {
 	    let ulList = [];
-	    const $ = cheerio.load(html.data);
-	    const $bodyList = $("table.cts_table tbody tr");	    
+	    const $ = cheerio.load(html.data, {decodeEntities: true});
+	    const $bodyList = $("table.cts_table tbody tr");
 	    var td;
 	    
 	    var food_1='운영없음\n';
@@ -742,7 +888,6 @@ router.post('/menu/professor', function(req, res, next) {
 
 		    	if(temp[i] != 'null' && temp[i] != '&#xA0;'){
 		    		food_3 += temp[i] + '\n';
-		    		console.log(temp[i]);
 		    	}
 		    }
 	    }
@@ -752,6 +897,7 @@ router.post('/menu/professor', function(req, res, next) {
 		  '[중식 - 한식]\n' + food_1.slice(0,-1) + '\n\n' +
 		  '[중식 - 특식]\n' + food_2.slice(0,-1) + '\n\n' +
 		  '[석식]\n' + food_3.slice(0,-1) + '\n\n';
+	    
 
 	    res.status(200).json(
 	    		{
@@ -760,10 +906,17 @@ router.post('/menu/professor', function(req, res, next) {
 	    				"outputs": [
 	    					{
 	    						"simpleText": {
-	    							"text": output_text
+	    							"text": decodeURI(output_text)
 	    						}
 	    					}
-	    					]
+	    				],
+	    				"quickReplies": [
+		                	{
+		                		"action" : "block",
+		                		"label" : "이전",
+		                		"blockId" : "5f65add31f96670bd416210c"
+		                	}
+		                ]
 	    			}
 	    		}
 	    );
@@ -772,131 +925,226 @@ router.post('/menu/professor', function(req, res, next) {
 });
 
 
-/* 식당메뉴 - 인하대 학식 - 제작중*/
+/* 정보광장 - 삽니다&팝니다 */
 
-router.post('/menu/inha', function(req, res, next) {
-	  let url = 'https://www.inha.ac.kr/kr/1073/subview.do';
-	  
-	  var week = new Array('일','월','화','수','목','금','토');
-	  
-	  var today = new Date(); 
-	  var year = today.getFullYear(); 
-	  var month = new String(today.getMonth()+1); 
-	  var date = new String(today.getDate());
-	  var day = week[today.getDay()];
-
-	  // 한자리수일 경우 0을 채워준다.
-	  if(month.length == 1){ 
-	    month = "0" + month; 
-	  } 
-	  if(date.length == 1){ 
-	    date = "0" + date; 
-	  } 
-	  
-	  let full_date = month + '.' + date + '.';
+router.post('/market', function(req, res, next) {
+	  let url = 'https://cms.itc.ac.kr/site/inhatc/boardList.do?boardSeq=70&key=114&part=000';
 	  
 	  axios.get(url).then(html => {
 	    let ulList = [];
 	    const $ = cheerio.load(html.data);
-	    const $bodyList = $("#viewForm");	    
-	    var td;
-	    
-	    var food_1='운영없음\n';
-	    var food_2='운영없음\n';
-	    var food_3='운영없음\n';
-	    
-	    var op_check = false;
-	    
-	    $bodyList.each(function(i, elem) {
-	    	td = $(this);
-	    	if(td.find('td:nth-of-type(1)').text() == full_date){
-	    		op_check = true;
+	    const $bodyList = $("table.bbs_default_list tr");	    
 
-	    		food_1 = td.find('td:nth-of-type(3)').html();
-	    		food_2 = td.find('td:nth-of-type(4)').html();
-	    		food_3 = td.find('td:nth-of-type(5)').html();
-	    	}
+	    $bodyList.each(function(i, elem) {
+	      ulList[i] = {
+	          title: $(this).children(".subject").find('a').text(),
+	          url: "https://cms.itc.ac.kr/site/ipsi" + String($(this).children(".subject").find('a').attr('href')).slice(1),
+	          date : $(this).children(".gray").text().trim() + " / " + $(this).find('td:nth-of-type(2)').text()
+	      };
 	    });
 	    
-	    if(op_check == true){
-	    	var strong_text;
-		    var temp;
-		    
-		    //food_1
-		    strong_text = food_1.match('<strong>' + '(.*?)' + '</strong>')[1];
-		    temp = food_1.split('<br>');
-		    
-		    if(temp[temp.length-1] == ''){
-		    	temp.pop();
-		    }
-		    
-		    food_1 = strong_text + '\n';
-		    
-		    for(var i = 1; i < temp.length; i++){
-		    	temp[i] = temp[i].trim().replace('\n', '');
-		    	if(temp[i] != 'null' && temp[i] != '&#xA0;'){
-		    		food_1 += temp[i] + '\n';
-		    	}
-		    }
-		    
-		    //food_2
-		    strong_text = food_2.match('<strong>' + '(.*?)' + '</strong>')[1];
-		    temp = food_2.split('<br>');
-		    if(temp[temp.length-1] == ''){
-		    	temp.pop();
-		    }
-		    
-		    food_2 = strong_text + '\n';
-		    
-		    for(var i = 1; i < temp.length; i++){
-		    	temp[i] = temp[i].trim().replace('\n', '');
-		    	if(temp[i] != 'null' && temp[i] != '&#xA0;'){
-		    		food_2 += temp[i] + '\n';
-		    	}
-		    }
-		    
-		    //food_3
-		    strong_text = food_3.match('<strong>' + '(.*?)' + '</strong>')[1];
-		    temp = food_3.split('<br>');
-		    if(temp[temp.length-1] == ''){
-		    	temp.pop();
-		    }
-		    
-		    food_3 = strong_text + '\n';
-		    
-		    for(var i = 1; i < temp.length; i++){
-		    	temp[i] = temp[i].trim().replace('\n', '');
-
-		    	if(temp[i] != 'null' && temp[i] != '&#xA0;'){
-		    		food_3 += temp[i] + '\n';
-		    		console.log(temp[i]);
-		    	}
-		    }
-	    }
-  
+	    const data = ulList.filter(n => n.title);
 	    
-	    var output_text = '🥄' + full_date + '(' + day + ')' + ' 교직원 식당 메뉴🥢\n\n' + 
-		  '[중식 - 한식]\n' + food_1.slice(0,-1) + '\n\n' +
-		  '[중식 - 특식]\n' + food_2.slice(0,-1) + '\n\n' +
-		  '[석식]\n' + food_3.slice(0,-1) + '\n\n';
-
 	    res.status(200).json(
 	    		{
-	    			"version": "2.0",
-	    			"template": {
-	    				"outputs": [
-	    					{
-	    						"simpleText": {
-	    							"text": output_text
-	    						}
-	    					}
-	    					]
+	    			  "version": "2.0",
+	    			  "template": {
+	    			    "outputs": [
+	    			      {
+	    			        "listCard": {
+	    			          "header": {
+	    			            "title": "삽니다 & 팝니다",
+	    			          },
+	    			          "items": [
+	    			            {
+	    			              "title": data[0].title,
+	    			              "description": data[0].date,
+	    			              "link": {
+	    			                "web": data[0].url
+	    			              }
+	    			            },
+	    			            {
+	    			            	"title": data[1].title,
+		    			              "description": data[1].date,
+		    			              "link": {
+		    			                "web": data[1].url
+		    			              }
+	    			            },
+	    			            {
+	    			            	"title": data[2].title,
+		    			              "description": data[2].date,
+		    			              "link": {
+		    			                "web": data[2].url
+		    			              }
+	    			            },
+	    			            {
+	    			            	"title": data[3].title,
+		    			              "description": data[3].date,
+		    			              "link": {
+		    			                "web": data[3].url
+		    			              }
+	    			            }
+	    			          ],
+	    			          "buttons": [
+	    			            {
+	    			              "label": "더 보기",
+	    			              "action": "webLink",
+	    			              "webLinkUrl": url
+	    			            }
+	    			          ]
+	    			        }
+	    			      }
+	    			    ],
+	    			    "quickReplies": [
+		                	{
+		                		"action" : "block",
+		                		"label" : "이전",
+		                		"blockId" : "5f65ae6d04c92653cf64980a"
+		                	}
+		                ]
+	    			  }
 	    			}
-	    		}
 	    );
-	    
 	})
 });
+
+/* 정보광장 - 삽니다&팝니다 */
+
+router.post('/lost', function(req, res, next) {
+	  let url = 'https://cms.itc.ac.kr/site/inhatc/boardList.do?boardSeq=105&key=116&part=000';
+	  
+	  axios.get(url).then(html => {
+	    let ulList = [];
+	    const $ = cheerio.load(html.data);
+	    const $bodyList = $("table.bbs_default_list tr");	    
+
+	    $bodyList.each(function(i, elem) {
+	      ulList[i] = {
+	          title: $(this).children(".subject").find('a').text(),
+	          url: "https://cms.itc.ac.kr/site/ipsi" + String($(this).children(".subject").find('a').attr('href')).slice(1),
+	          date : $(this).children(".gray").text().trim() + " / " + $(this).find('td:nth-of-type(2)').text()
+	      };
+	    });
+	    
+	    const data = ulList.filter(n => n.title);
+	    
+	    res.status(200).json(
+	    		{
+	    			  "version": "2.0",
+	    			  "template": {
+	    			    "outputs": [
+	    			      {
+	    			        "listCard": {
+	    			          "header": {
+	    			            "title": "분실물 & 습득물",
+	    			          },
+	    			          "items": [
+	    			            {
+	    			              "title": data[0].title,
+	    			              "description": data[0].date,
+	    			              "link": {
+	    			                "web": url
+	    			              }
+	    			            },
+	    			            {
+	    			            	"title": data[1].title,
+		    			              "description": data[1].date,
+		    			              "link": {
+		    			                "web": url
+		    			              }
+	    			            },
+	    			            {
+	    			            	"title": data[2].title,
+		    			              "description": data[2].date,
+		    			              "link": {
+		    			                "web": url
+		    			              }
+	    			            },
+	    			            {
+	    			            	"title": data[3].title,
+		    			              "description": data[3].date,
+		    			              "link": {
+		    			                "web": url
+		    			              }
+	    			            }
+	    			          ],
+	    			          "buttons": [
+	    			            {
+	    			              "label": "더 보기",
+	    			              "action": "webLink",
+	    			              "webLinkUrl": url
+	    			            }
+	    			          ]
+	    			        }
+	    			      }
+	    			    ],
+	    			    "quickReplies": [
+		                	{
+		                		"action" : "block",
+		                		"label" : "이전",
+		                		"blockId" : "5f65ae6d04c92653cf64980a"
+		                	}
+		                ]
+	    			  }
+	    			}
+	    );
+	})
+});
+
+
+/* 원점메아리 */
+
+router.post('/news', function(req, res, next) {
+	  let url = 'https://cms.itc.ac.kr/site/inhatc/boardList.do?boardSeq=68&key=99&part=000';
+	  
+	  axios.get(url).then(html => {
+	    let ulList = [];
+	    const $ = cheerio.load(html.data);
+	    const $bodyList = $("div.webzine ul.clearfix li");
+	    
+	    var ho;
+	    var imgUrl;
+	    var temp;
+
+	    $bodyList.each(function(i, elem) {
+	    	if(i>0){
+	    		return false;
+	    	}
+	    	imgUrl = "https://cms.itc.ac.kr" + String($(this).find('a').children(".photo").find('img').attr('src')).replace('thumb/','');
+	    	temp = $(this).children(".title").text().trim().split('제')[1];
+	    	ho = temp.split('호')[0];
+	    });
+	    
+	    res.status(200).json(
+	    		{
+	    			  "version": "2.0",
+	    			  "template": {
+	    			    "outputs": [
+	    			      {
+	    			        "basicCard": {
+	    			          "title": "원점메아리 " + ho + "호",
+	    			          "thumbnail": {
+	    			            "imageUrl": imgUrl,
+	    			            "fixedRatio" : true,
+	    			            "width" : 730,
+	    			            "height" : 999
+	    			          },
+	    			          "buttons": [
+	    			            {
+	    			              "action":  "webLink",
+	    			              "label": "보러가기",
+	    			              "webLinkUrl": "http://asp2.ezebn.com/Viewer/inha" + ho
+	    			            }
+	    			          ]
+	    			        }
+	    			      }
+	    			    ]
+	    			  }
+	    			}
+	    );
+	})
+});
+
 
 
 // 모듈에 등록해야 app.js에서 app.use함수를 통해서 사용 가능
