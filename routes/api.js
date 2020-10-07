@@ -620,6 +620,30 @@ router.post('/library', function(req, res, next) {
 router.post('/library/seat', function(req, res){
 	var user_id = req.body.action.params.user_id;
 	
+	if(user_id.length != 9 || user_id.slice(0,2) != '20'){
+		res.status(200).json(
+				{
+	    			"version": "2.0",
+	    			"template": {
+	    				"outputs": [
+	    					{
+	    						"simpleText": {
+	    							"text": "올바르지 않은 학번 형식입니다."
+	    						}
+	    					}
+	    				],
+	    				"quickReplies": [
+		                	{
+		                		"action" : "block",
+		                		"label" : "이전",
+		                		"blockId" : "5f65ad656b1a753222a0be7b"
+		                	}
+		                ]
+	    			}
+	    		}
+		);
+	}
+	
 	var url = "http://221.154.90.171:8085/MA/roomList.php?userId=" + user_id;
 
 	res.status(200).json(		
