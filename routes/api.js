@@ -63,7 +63,7 @@ router.post('/dept', function(req, res){
     			        "outputs": [
     			            {
     			                "simpleText": {
-    			                    "text": "알 수 없는 학과명입니다."
+    			                    "text": "존재하지 않는 학과입니다."
     			                }
     			            }
     			        ],
@@ -652,7 +652,9 @@ router.post('/library/seat', function(req, res){
 	);	
 });
 
-
+//html-entities decoder
+const Entities = require('html-entities').XmlEntities;
+const entities = new Entities();
 
 /* 식당메뉴 - 학생 */
 
@@ -699,6 +701,10 @@ router.post('/menu/student', function(req, res, next) {
 	    		food_3 = td.find('td:nth-of-type(5)').html();
 	    	}
 	    });
+	    
+	    food_1 = entities.decode(food_1);
+	    food_2 = entities.decode(food_2);
+	    food_3 = entities.decode(food_3);
 	    
 	    if(op_check == true){
 	    	var strong_text;
@@ -785,12 +791,6 @@ router.post('/menu/student', function(req, res, next) {
 });
 
 
-function decodeHTML(str){
-    return str.replace(/&#([0-9]{1,3});/gi, function(match, num) {
-        return String.fromCharCode(parseInt(num));
-    });
-}
-
 /* 식당메뉴 - 교직원 */
 
 router.post('/menu/professor', function(req, res, next) {
@@ -816,7 +816,7 @@ router.post('/menu/professor', function(req, res, next) {
 	  
 	  axios.get(url).then(html => {
 	    let ulList = [];
-	    const $ = cheerio.load(html.data, {decodeEntities: true});
+	    const $ = cheerio.load(html.data);
 	    const $bodyList = $("table.cts_table tbody tr");
 	    var td;
 	    
@@ -837,6 +837,10 @@ router.post('/menu/professor', function(req, res, next) {
 	    	}
 	    });
 	    
+	    food_1 = entities.decode(food_1);
+	    food_2 = entities.decode(food_2);
+	    food_3 = entities.decode(food_3);
+	    
 	    if(op_check == true){
 	    	var strong_text;
 		    var temp;
@@ -853,7 +857,7 @@ router.post('/menu/professor', function(req, res, next) {
 		    
 		    for(var i = 1; i < temp.length; i++){
 		    	temp[i] = temp[i].trim().replace('\n', '');
-		    	if(temp[i] != 'null' && temp[i] != '&#xA0;'){
+		    	if(temp[i] != 'null' && temp[i] != ''){
 		    		food_1 += temp[i] + '\n';
 		    	}
 		    }
@@ -869,7 +873,7 @@ router.post('/menu/professor', function(req, res, next) {
 		    
 		    for(var i = 1; i < temp.length; i++){
 		    	temp[i] = temp[i].trim().replace('\n', '');
-		    	if(temp[i] != 'null' && temp[i] != '&#xA0;'){
+		    	if(temp[i] != 'null' && temp[i] != ''){
 		    		food_2 += temp[i] + '\n';
 		    	}
 		    }
@@ -886,19 +890,18 @@ router.post('/menu/professor', function(req, res, next) {
 		    for(var i = 1; i < temp.length; i++){
 		    	temp[i] = temp[i].trim().replace('\n', '');
 
-		    	if(temp[i] != 'null' && temp[i] != '&#xA0;'){
+		    	if(temp[i] != 'null' && temp[i] != ''){
 		    		food_3 += temp[i] + '\n';
 		    	}
 		    }
 	    }
-  
+  	
 	    
 	    var output_text = '🥄' + full_date + '(' + day + ')' + ' 교직원 식당 메뉴🥢\n\n' + 
 		  '[중식 - 한식]\n' + food_1.slice(0,-1) + '\n\n' +
 		  '[중식 - 특식]\n' + food_2.slice(0,-1) + '\n\n' +
 		  '[석식]\n' + food_3.slice(0,-1) + '\n\n';
 	    
-
 	    res.status(200).json(
 	    		{
 	    			"version": "2.0",
@@ -906,7 +909,7 @@ router.post('/menu/professor', function(req, res, next) {
 	    				"outputs": [
 	    					{
 	    						"simpleText": {
-	    							"text": decodeURI(output_text)
+	    							"text": output_text
 	    						}
 	    					}
 	    				],
@@ -920,6 +923,7 @@ router.post('/menu/professor', function(req, res, next) {
 	    			}
 	    		}
 	    );
+	    
 	    
 	})
 });
