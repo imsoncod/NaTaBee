@@ -129,7 +129,7 @@ router.post('/search', function(req, res, next) {
 router.post('/seat', function(req, res){
 	var user_id = req.body.action.params.user_id;
 	
-[]	if(user_id.length != 9 || user_id.slice(0,2) != '20' || isNaN(user_id)){
+	if(user_id.length != 9 || user_id.slice(0,2) != '20' || isNaN(user_id)){
 		res.status(200).json(
 				{
 	    			"version": "2.0",
