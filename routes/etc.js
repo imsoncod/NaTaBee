@@ -136,7 +136,14 @@ router.post('/news', function(req, res, next) {
 	    			          ]
 	    			        }
 	    			      }
-	    			    ]
+	    			    ],
+	    			    "quickReplies": [
+		                	{
+		                		"action" : "block",
+		                		"label" : "이전",
+		                		"blockId" : "5f6465aa6c2427307fbe0872"
+		                	}
+		                ]
 	    			  }
 	    			}
 	    );
