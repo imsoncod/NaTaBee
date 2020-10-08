@@ -12,10 +12,22 @@ http.createServer(app).listen(app.get('port'), function(){
 });
 
 //라우팅 모듈 선언
-var apiRouter = require('./routes/api');
+var notice = require('./routes/notice');
+var phone = require('./routes/phone');
+var library = require('./routes/library');
+var menu = require('./routes/menu');
+var info = require('./routes/info');
+var etc = require('./routes/etc');
+var test = require('./routes/test');
 
 //request body json parser
 app.use(bodyParser.json());
 
 //request 요청 URL과 처리 로직을 선언한 라우팅 모듈 매핑
-app.use('/', apiRouter);
+app.use('/natabee/notice', notice);
+app.use('/natabee/phone', phone);
+app.use('/natabee/library', library);
+app.use('/natabee/menu', menu);
+app.use('/natabee/info', info);
+app.use('/natabee/etc', etc);
+app.use('/natabee/test', test);
