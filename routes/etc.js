@@ -4,6 +4,109 @@ const request = require('request');
 const cheerio = require("cheerio");
 const axios = require("axios");
 
+/**
+ * @swagger
+ * tags:
+ *   name: etc
+ *   description: 기타 API
+ *   
+ * definitions:
+ *   request_dept:
+ *     type: object
+ *     properties:
+ *       intent:
+ *         type: object
+ *         properties:
+ *           id:
+ *             type: string
+ *           name:
+ *             type: string 
+ *       userRequest:
+ *         type: object
+ *         properties:
+ *           timezone:
+ *             type: string
+ *           params:
+ *             properties:
+ *               ignoreMe:
+ *                 type: string
+ *           block:
+ *             properties:
+ *               id:
+ *                 type: string
+ *               name:
+ *                 type: string  
+ *           utterance:
+ *             type: string
+ *           lang:
+ *             type: string
+ *           user:      
+ *             properties:
+ *               id:
+ *                 type: string
+ *               type:
+ *                 type: string
+ *               properties:
+ *                 type: object  
+ *       bot:
+ *         type: object
+ *         properties:
+ *           id:
+ *             type: string
+ *           name:
+ *             type: string
+ *       action:
+ *         type: object
+ *         properties:
+ *           name:
+ *             type: string
+ *           clientExtra:
+ *             type: string
+ *           params:
+ *             type: object
+ *             properties:
+ *               dept:
+ *                 type: string
+ *                 example: 컴퓨터시스템과
+ *           id:
+ *             type: string
+ *           detailParams:
+ *             type: object
+ *             properties:
+ *               dept:
+ *                 type: object
+ *                 properties:
+ *                   origin:
+ *                     type: string
+ *                   value:
+ *                     type: string
+ *                   groupName:
+ *                     type: string                  
+ *
+ */
+
+/**
+ * @swagger
+ * /etc/dept:
+ *   post:
+ *     tags: [etc]
+ *     summary: 학과 소개 사이트
+ *     parameters:
+ *       - in: body
+ *         name: json_object
+ *         description: 학과명 전달
+ *         schema:
+ *           $ref: "#/definitions/request_dept"
+ *     responses:
+ *       200:
+ *         description: 성공
+ *       403:
+ *         description: Forbidden
+ *       404:
+ *         description: NotFound
+ *       500:
+ *         description: BadRequest
+ */
 /* 학과명 입력 */
 router.post('/dept', function(req, res){
 	var dept = req.body.action.params.dept;
@@ -90,8 +193,30 @@ router.post('/dept', function(req, res){
 	);	
 });
 
-/* 원점메아리 */
 
+/**
+ * @swagger
+ * /etc/news:
+ *   post:
+ *     tags: [etc]
+ *     summary: 원점메아리
+ *     parameters:
+ *       - in: body
+ *         name: json_object
+ *         description: Kakao 기본 Request Object
+ *         schema:
+ *           $ref: "#/definitions/request_basic"
+ *     responses:
+ *       200:
+ *         description: 성공
+ *       403:
+ *         description: Forbidden
+ *       404:
+ *         description: NotFound
+ *       500:
+ *         description: BadRequest
+ */
+/* 원점메아리 */
 router.post('/news', function(req, res, next) {
 	  let url = 'https://cms.itc.ac.kr/site/inhatc/boardList.do?boardSeq=68&key=99&part=000';
 	  

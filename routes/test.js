@@ -12,6 +12,29 @@ const request = require('request');
  * 
  */
 
+/**
+ * @swagger
+ * tags:
+ *   name: test
+ *   description: 서버 테스트 API
+*/
+
+/**
+ * @swagger
+ * /test:
+ *   get:
+ *     tags: [test]
+ *     summary: 서버 테스트
+ *     responses:
+ *       200:
+ *         description: 성공
+ *       403:
+ *         description: Forbidden
+ *       404:
+ *         description: NotFound
+ *       500:
+ *         description: BadRequest
+ */
 /* Server Testing */
 router.get('/', function(req, res){	
 	res.status(200).json(		

@@ -4,9 +4,36 @@ const request = require('request');
 const cheerio = require("cheerio");
 const axios = require("axios");
 
+/**
+ * @swagger
+ * tags:
+ *   name: info
+ *   description: 정보광장 API
+*/
 
+/**
+ * @swagger
+ * /info/market:
+ *   post:
+ *     tags: [info]
+ *     summary: 삽니다 & 팝니다
+ *     parameters:
+ *       - in: body
+ *         name: json_object
+ *         description: Kakao 기본 Request Object
+ *         schema:
+ *           $ref: "#/definitions/request_basic"
+ *     responses:
+ *       200:
+ *         description: 성공
+ *       403:
+ *         description: Forbidden
+ *       404:
+ *         description: NotFound
+ *       500:
+ *         description: BadRequest
+ */
 /* 정보광장 - 삽니다 & 팝니다 */
-
 router.post('/market', function(req, res, next) {
 	  let url = 'https://cms.itc.ac.kr/site/inhatc/boardList.do?boardSeq=70&key=114&part=000';
 	  
@@ -88,8 +115,30 @@ router.post('/market', function(req, res, next) {
 	})
 });
 
-/* 정보광장 - 분실물 & 습득물 */
 
+/**
+ * @swagger
+ * /info/lost:
+ *   post:
+ *     tags: [info]
+ *     summary: 분실물 & 습득물
+ *     parameters:
+ *       - in: body
+ *         name: json_object
+ *         description: Kakao 기본 Request Object
+ *         schema:
+ *           $ref: "#/definitions/request_basic"
+ *     responses:
+ *       200:
+ *         description: 성공
+ *       403:
+ *         description: Forbidden
+ *       404:
+ *         description: NotFound
+ *       500:
+ *         description: BadRequest
+ */
+/* 정보광장 - 분실물 & 습득물 */
 router.post('/lost', function(req, res, next) {
 	  let url = 'https://cms.itc.ac.kr/site/inhatc/boardList.do?boardSeq=105&key=116&part=000';
 	  

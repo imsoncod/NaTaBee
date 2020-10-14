@@ -4,8 +4,36 @@ const request = require('request');
 const cheerio = require("cheerio");
 const axios = require("axios");
 
-/* 공지사항_입학 */
+/**
+ * @swagger
+ * tags:
+ *   name: notice
+ *   description: 공지사항 API
+*/
 
+/**
+ * @swagger
+ * /notice/admission:
+ *   post:
+ *     tags: [notice]
+ *     summary: 입학 공지사항
+ *     parameters:
+ *       - in: body
+ *         name: json_object
+ *         description: Kakao 기본 Request Object
+ *         schema:
+ *           $ref: "#/definitions/request_basic"
+ *     responses:
+ *       200:
+ *         description: 성공
+ *       403:
+ *         description: Forbidden
+ *       404:
+ *         description: NotFound
+ *       500:
+ *         description: BadRequest
+ */
+/* 공지사항_입학 */
 router.post('/admission', function(req, res, next) {
 	  let url = 'https://cms.itc.ac.kr/site/ipsi/boardList.do?boardSeq=44&key=133';
 	  
@@ -87,8 +115,30 @@ router.post('/admission', function(req, res, next) {
 	})
 });
 
-/* 공지사항_캠퍼스라이프 */
 
+/**
+ * @swagger
+ * /notice/campuslife:
+ *   post:
+ *     tags: [notice]
+ *     summary: 캠퍼스라이프 공지사항
+ *     parameters:
+ *       - in: body
+ *         name: json_object
+ *         description: Kakao 기본 Request Object
+ *         schema:
+ *           $ref: "#/definitions/request_basic"
+ *     responses:
+ *       200:
+ *         description: 성공
+ *       403:
+ *         description: Forbidden
+ *       404:
+ *         description: NotFound
+ *       500:
+ *         description: BadRequest
+ */
+/* 공지사항_캠퍼스라이프 */
 router.post('/campuslife', function(req, res, next) {
 	  let url = 'https://cms.itc.ac.kr/site/inhatc/boardList.do?boardSeq=44&key=111&part=000';
 	  

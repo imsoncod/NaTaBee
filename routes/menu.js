@@ -8,8 +8,36 @@ const axios = require("axios");
 const Entities = require('html-entities').XmlEntities;
 const entities = new Entities();
 
-/* 식당메뉴 - 학생 */
+/**
+ * @swagger
+ * tags:
+ *   name: menu
+ *   description: 식당메뉴 API
+*/
 
+/**
+ * @swagger
+ * /menu/student:
+ *   post:
+ *     tags: [menu]
+ *     summary: 학생 식당 메뉴
+ *     parameters:
+ *       - in: body
+ *         name: json_object
+ *         description: Kakao 기본 Request Object
+ *         schema:
+ *           $ref: "#/definitions/request_basic"
+ *     responses:
+ *       200:
+ *         description: 성공
+ *       403:
+ *         description: Forbidden
+ *       404:
+ *         description: NotFound
+ *       500:
+ *         description: BadRequest
+ */
+/* 식당메뉴 - 학생 */
 router.post('/student', function(req, res, next) {
 	  let url = 'https://cms.itc.ac.kr/site/inhatc/foodList.do?key=902&type=1&part=000';
 	  
@@ -143,8 +171,29 @@ router.post('/student', function(req, res, next) {
 });
 
 
+/**
+ * @swagger
+ * /menu/professor:
+ *   post:
+ *     tags: [menu]
+ *     summary: 교직원 식당 메뉴
+ *     parameters:
+ *       - in: body
+ *         name: json_object
+ *         description: Kakao 기본 Request Object
+ *         schema:
+ *           $ref: "#/definitions/request_basic"
+ *     responses:
+ *       200:
+ *         description: 성공
+ *       403:
+ *         description: Forbidden
+ *       404:
+ *         description: NotFound
+ *       500:
+ *         description: BadRequest
+ */
 /* 식당메뉴 - 교직원 */
-
 router.post('/professor', function(req, res, next) {
 	  let url = 'https://cms.itc.ac.kr/site/inhatc/foodList.do?key=903&type=2&part=000';
 	  

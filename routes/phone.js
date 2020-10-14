@@ -4,8 +4,182 @@ const request = require('request');
 const cheerio = require("cheerio");
 const axios = require("axios");
 
-/* 전화번호_성명 */
+/**
+ * @swagger
+ * tags:
+ *   name: phone
+ *   description: 전화번호 검색 API
+ *   
+ * definitions:
+ *   request_phone_name:
+ *     type: object
+ *     properties:
+ *       intent:
+ *         type: object
+ *         properties:
+ *           id:
+ *             type: string
+ *           name:
+ *             type: string 
+ *       userRequest:
+ *         type: object
+ *         properties:
+ *           timezone:
+ *             type: string
+ *           params:
+ *             properties:
+ *               ignoreMe:
+ *                 type: string
+ *           block:
+ *             properties:
+ *               id:
+ *                 type: string
+ *               name:
+ *                 type: string  
+ *           utterance:
+ *             type: string
+ *           lang:
+ *             type: string
+ *           user:      
+ *             properties:
+ *               id:
+ *                 type: string
+ *               type:
+ *                 type: string
+ *               properties:
+ *                 type: object  
+ *       bot:
+ *         type: object
+ *         properties:
+ *           id:
+ *             type: string
+ *           name:
+ *             type: string
+ *       action:
+ *         type: object
+ *         properties:
+ *           name:
+ *             type: string
+ *           clientExtra:
+ *             type: string
+ *           params:
+ *             type: object
+ *             properties:
+ *               phone_name:
+ *                 type: string
+ *                 example: 김기태
+ *           id:
+ *             type: string
+ *           detailParams:
+ *             type: object
+ *             properties:
+ *               phone_name:
+ *                 type: object
+ *                 properties:
+ *                   origin:
+ *                     type: string
+ *                   value:
+ *                     type: string
+ *                   groupName:
+ *                     type: string                  
+ *   
+ *   request_phone_dept:
+ *     type: object
+ *     properties:
+ *       intent:
+ *         type: object
+ *         properties:
+ *           id:
+ *             type: string
+ *           name:
+ *             type: string 
+ *       userRequest:
+ *         type: object
+ *         properties:
+ *           timezone:
+ *             type: string
+ *           params:
+ *             properties:
+ *               ignoreMe:
+ *                 type: string
+ *           block:
+ *             properties:
+ *               id:
+ *                 type: string
+ *               name:
+ *                 type: string  
+ *           utterance:
+ *             type: string
+ *           lang:
+ *             type: string
+ *           user:      
+ *             properties:
+ *               id:
+ *                 type: string
+ *               type:
+ *                 type: string
+ *               properties:
+ *                 type: object  
+ *       bot:
+ *         type: object
+ *         properties:
+ *           id:
+ *             type: string
+ *           name:
+ *             type: string
+ *       action:
+ *         type: object
+ *         properties:
+ *           name:
+ *             type: string
+ *           clientExtra:
+ *             type: string
+ *           params:
+ *             type: object
+ *             properties:
+ *               phone_dept:
+ *                 type: string
+ *                 example: 컴퓨터
+ *           id:
+ *             type: string
+ *           detailParams:
+ *             type: object
+ *             properties:
+ *               phone_dept:
+ *                 type: object
+ *                 properties:
+ *                   origin:
+ *                     type: string
+ *                   value:
+ *                     type: string
+ *                   groupName:
+ *                     type: string
+ */
 
+
+/**
+ * @swagger
+ * /phone/name:
+ *   post:
+ *     tags: [phone]
+ *     summary: 전화번호 검색 - 성명
+ *     parameters:
+ *       - in: body
+ *         name: json_object
+ *         description: 성명 전달
+ *         schema:
+ *           $ref: "#/definitions/request_phone_name"
+ *     responses:
+ *       200:
+ *         description: 성공
+ *       403:
+ *         description: Forbidden
+ *       404:
+ *         description: NotFound
+ *       500:
+ *         description: BadRequest
+ */
+/* 전화번호_성명 */
 router.post('/name', function(req, res, next) {
 	
 	var phone_name = req.body.action.params.phone_name;
@@ -113,8 +287,30 @@ router.post('/name', function(req, res, next) {
 	})
 });
 
-/* 전화번호_소속명 */
 
+/**
+ * @swagger
+ * /phone/dept:
+ *   post:
+ *     tags: [phone]
+ *     summary: 전화번호 검색 - 소속명
+ *     parameters:
+ *       - in: body
+ *         name: json_object
+ *         description: 소속명 전달
+ *         schema:
+ *           $ref: "#/definitions/request_phone_dept"
+ *     responses:
+ *       200:
+ *         description: 성공
+ *       403:
+ *         description: Forbidden
+ *       404:
+ *         description: NotFound
+ *       500:
+ *         description: BadRequest
+ */
+/* 전화번호_소속명 */
 router.post('/dept', function(req, res, next) {
 	
 	var phone_dept = req.body.action.params.phone_dept;

@@ -4,9 +4,180 @@ const request = require('request');
 const cheerio = require("cheerio");
 const axios = require("axios");
 
+/**
+ * @swagger
+ * tags:
+ *   name: library
+ *   description: 도서관 API
+ *   
+ * definitions:
+ *   request_search:
+ *     type: object
+ *     properties:
+ *       intent:
+ *         type: object
+ *         properties:
+ *           id:
+ *             type: string
+ *           name:
+ *             type: string 
+ *       userRequest:
+ *         type: object
+ *         properties:
+ *           timezone:
+ *             type: string
+ *           params:
+ *             properties:
+ *               ignoreMe:
+ *                 type: string
+ *           block:
+ *             properties:
+ *               id:
+ *                 type: string
+ *               name:
+ *                 type: string  
+ *           utterance:
+ *             type: string
+ *           lang:
+ *             type: string
+ *           user:      
+ *             properties:
+ *               id:
+ *                 type: string
+ *               type:
+ *                 type: string
+ *               properties:
+ *                 type: object  
+ *       bot:
+ *         type: object
+ *         properties:
+ *           id:
+ *             type: string
+ *           name:
+ *             type: string
+ *       action:
+ *         type: object
+ *         properties:
+ *           name:
+ *             type: string
+ *           clientExtra:
+ *             type: string
+ *           params:
+ *             type: object
+ *             properties:
+ *               book_name:
+ *                 type: string
+ *                 example: 데이터베이스
+ *           id:
+ *             type: string
+ *           detailParams:
+ *             type: object
+ *             properties:
+ *               book_name:
+ *                 type: object
+ *                 properties:
+ *                   origin:
+ *                     type: string
+ *                   value:
+ *                     type: string
+ *                   groupName:
+ *                     type: string                  
+ *   request_seat:
+ *     type: object
+ *     properties:
+ *       intent:
+ *         type: object
+ *         properties:
+ *           id:
+ *             type: string
+ *           name:
+ *             type: string 
+ *       userRequest:
+ *         type: object
+ *         properties:
+ *           timezone:
+ *             type: string
+ *           params:
+ *             properties:
+ *               ignoreMe:
+ *                 type: string
+ *           block:
+ *             properties:
+ *               id:
+ *                 type: string
+ *               name:
+ *                 type: string  
+ *           utterance:
+ *             type: string
+ *           lang:
+ *             type: string
+ *           user:      
+ *             properties:
+ *               id:
+ *                 type: string
+ *               type:
+ *                 type: string
+ *               properties:
+ *                 type: object  
+ *       bot:
+ *         type: object
+ *         properties:
+ *           id:
+ *             type: string
+ *           name:
+ *             type: string
+ *       action:
+ *         type: object
+ *         properties:
+ *           name:
+ *             type: string
+ *           clientExtra:
+ *             type: string
+ *           params:
+ *             type: object
+ *             properties:
+ *               user_id:
+ *                 type: string
+ *                 example: "201645018"
+ *           id:
+ *             type: string
+ *           detailParams:
+ *             type: object
+ *             properties:
+ *               user_id:
+ *                 type: object
+ *                 properties:
+ *                   origin:
+ *                     type: string
+ *                   value:
+ *                     type: string
+ *                   groupName:
+ *                     type: string
+ */
 
+/**
+ * @swagger
+ * /library/search:
+ *   post:
+ *     tags: [library]
+ *     summary: 도서 검색
+ *     parameters:
+ *       - in: body
+ *         name: json_object
+ *         description: 도서명 전달
+ *         schema:
+ *           $ref: "#/definitions/request_search"
+ *     responses:
+ *       200:
+ *         description: 성공
+ *       403:
+ *         description: Forbidden
+ *       404:
+ *         description: NotFound
+ *       500:
+ *         description: BadRequest
+ */
 /* 도서관 - 도서검색 */
-
 router.post('/search', function(req, res, next) {
 	
 	var book_name = req.body.action.params.book_name;
@@ -124,7 +295,28 @@ router.post('/search', function(req, res, next) {
 	})
 });
 
-
+/**
+ * @swagger
+ * /library/seat:
+ *   post:
+ *     tags: [library]
+ *     summary: 좌석 예약
+ *     parameters:
+ *       - in: body
+ *         name: json_object
+ *         description: 학번 전달
+ *         schema:
+ *           $ref: "#/definitions/request_seat"
+ *     responses:
+ *       200:
+ *         description: 성공
+ *       403:
+ *         description: Forbidden
+ *       404:
+ *         description: NotFound
+ *       500:
+ *         description: BadRequest
+ */
 /* 도서관 - 좌석 예약 및 사용 현황 */
 router.post('/seat', function(req, res){
 	var user_id = req.body.action.params.user_id;
