@@ -31,3 +31,10 @@ app.use('/natabee/menu', menu);
 app.use('/natabee/info', info);
 app.use('/natabee/etc', etc);
 app.use('/natabee/test', test);
+
+const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerOption = require('./routes/swagger');
+const swaggerSpec = swaggerJSDoc(swaggerOption);
+const swaggerUi = require('swagger-ui-express');
+ 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
