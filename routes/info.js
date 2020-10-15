@@ -35,18 +35,18 @@ const axios = require("axios");
  */
 /* 정보광장 - 삽니다 & 팝니다 */
 router.post('/market', function(req, res, next) {
-	  let url = 'https://cms.itc.ac.kr/site/inhatc/boardList.do?boardSeq=70&key=114&part=000';
+	  let url = 'https://cms.itc.ac.kr/site/mobile/boardList.do?boardSeq=70&key=1003&part=000';
 	  
 	  axios.get(url).then(html => {
 	    let ulList = [];
 	    const $ = cheerio.load(html.data);
-	    const $bodyList = $("table.bbs_default_list tr");	    
+	    const $bodyList = $("#news_list_new li");	    
 
 	    $bodyList.each(function(i, elem) {
 	      ulList[i] = {
-	          title: $(this).children(".subject").find('a').text(),
-	          url: "https://cms.itc.ac.kr/site/ipsi" + String($(this).children(".subject").find('a').attr('href')).slice(1),
-	          date : $(this).children(".gray").text().trim() + " / " + $(this).find('td:nth-of-type(2)').text()
+		         title: $(this).find('a').text().trim(),
+		         url: "https://cms.itc.ac.kr/site/mobile/" + String($(this).find('a').attr('href')),
+		         date : $(this).find('p').find('span:nth-of-type(2)').text() + ' / ' + $(this).find('p').find('span:nth-of-type(4)').text().split('분류:')[1]
 	      };
 	    });
 	    
@@ -140,20 +140,20 @@ router.post('/market', function(req, res, next) {
  */
 /* 정보광장 - 분실물 & 습득물 */
 router.post('/lost', function(req, res, next) {
-	  let url = 'https://cms.itc.ac.kr/site/inhatc/boardList.do?boardSeq=105&key=116&part=000';
+	  let url = 'https://cms.itc.ac.kr/site/mobile/boardList.do?boardSeq=105&key=1005&part=000';
 	  
 	  axios.get(url).then(html => {
-	    let ulList = [];
-	    const $ = cheerio.load(html.data);
-	    const $bodyList = $("table.bbs_default_list tr");	    
+		    let ulList = [];
+		    const $ = cheerio.load(html.data);
+		    const $bodyList = $("#news_list_new li");	    
 
-	    $bodyList.each(function(i, elem) {
-	      ulList[i] = {
-	          title: $(this).children(".subject").find('a').text(),
-	          url: "https://cms.itc.ac.kr/site/ipsi" + String($(this).children(".subject").find('a').attr('href')).slice(1),
-	          date : $(this).children(".gray").text().trim() + " / " + $(this).find('td:nth-of-type(2)').text()
-	      };
-	    });
+		    $bodyList.each(function(i, elem) {
+		      ulList[i] = {
+			         title: $(this).find('a').text().trim(),
+			         url: "https://cms.itc.ac.kr/site/mobile/" + String($(this).find('a').attr('href')),
+			         date : $(this).find('p').find('span:nth-of-type(2)').text() + ' / ' + $(this).find('p').find('span:nth-of-type(4)').text().split('분류:')[1]
+		      };
+		    });
 	    
 	    const data = ulList.filter(n => n.title);
 	    
