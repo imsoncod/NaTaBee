@@ -193,12 +193,15 @@ router.post('/search', function(req, res, next) {
 	    var book_list = html.data.ListItem.BasicItem;
 	    
 	    for(var i = 0; i < book_list.length; i++){
+	    	if(i > 3){
+	    		break;
+	    	}
 	    	var mTitle = book_list[i].Title;
 	    	var mAuthor = book_list[i].Author;
 	    	var mPublisher = book_list[i].Publisher;
 	    	var mImageUrl = 'https://library.inhatc.ac.kr/cheetah/Shared/CoverImage?Cno=' + book_list[i].Cno;
 	    	var mUrl = 'https://library.inhatc.ac.kr/Cheetah/Search/AdvenceSearch#/basic/detail/' + book_list[i].Cno;
-	    	
+	    	console.log(mImageUrl);
 	    	ulList[i] = {
 	    		title : mTitle,
 	    		description : mAuthor + ' / ' + mPublisher,
@@ -209,7 +212,7 @@ router.post('/search', function(req, res, next) {
 	    	}
 	    };
 	    
-	    var data_length = ulList.length;
+	    var data_length = book_list.length;
 	    const data = ulList.filter(n => n.title);
 	    
 	    if(data_length == 0){
@@ -234,7 +237,7 @@ router.post('/search', function(req, res, next) {
 	    			    }
 	    			}
 	    	);
-	    }else if(ulList.length<=4){
+	    }else if(data_length<=4){
 	    	res.status(200).json(
 		    		{
 		    			  "version": "2.0",
@@ -243,7 +246,8 @@ router.post('/search', function(req, res, next) {
 		    			      {
 		    			        "listCard": {
 		    			          "header": {
-		    			            "title": "'" + book_name + "' 도서 검색결과 " + data_length + "건",
+		    			            "title": "'" + book_name + "' 도서 검색결과",
+		    			            "imageUrl": "https://user-images.githubusercontent.com/48934537/96865227-a461d880-14a4-11eb-816c-5022510185b2.png"
 		    			          },
 		    			          "items": data
 		    			        }
@@ -268,7 +272,8 @@ router.post('/search', function(req, res, next) {
 		    			      {
 		    			        "listCard": {
 		    			          "header": {
-		    			            "title": "'" + book_name + "' 도서 검색결과 " + data_length + "건",
+		    			            "title": "'" + book_name + "' 도서 검색결과",
+		    			            "imageUrl": "https://user-images.githubusercontent.com/48934537/96865227-a461d880-14a4-11eb-816c-5022510185b2.png"
 		    			          },
 		    			          "items": data.slice(0,4),
 		    			          "buttons": [

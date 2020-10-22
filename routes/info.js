@@ -43,6 +43,9 @@ router.post('/market', function(req, res, next) {
 	    const $bodyList = $("#news_list_new li");	    
 
 	    $bodyList.each(function(i, elem) {
+	      if(i > 3){
+	    	  return false;
+	      }
 	      ulList[i] = {
 		         title: $(this).find('a').text().trim(),
 		         url: "https://cms.itc.ac.kr/site/mobile/" + String($(this).find('a').attr('href')),
@@ -61,6 +64,7 @@ router.post('/market', function(req, res, next) {
 	    			        "listCard": {
 	    			          "header": {
 	    			            "title": "삽니다 & 팝니다",
+	    			            "imageUrl": "https://user-images.githubusercontent.com/48934537/96865227-a461d880-14a4-11eb-816c-5022510185b2.png"
 	    			          },
 	    			          "items": [
 	    			            {
@@ -148,6 +152,9 @@ router.post('/lost', function(req, res, next) {
 		    const $bodyList = $("#news_list_new li");	    
 
 		    $bodyList.each(function(i, elem) {
+		    	if(i > 3){
+		    		return false;
+		    	}
 		      ulList[i] = {
 			         title: $(this).find('a').text().trim(),
 			         url: "https://cms.itc.ac.kr/site/mobile/" + String($(this).find('a').attr('href')),
@@ -166,6 +173,7 @@ router.post('/lost', function(req, res, next) {
 	    			        "listCard": {
 	    			          "header": {
 	    			            "title": "분실물 & 습득물",
+	    			            "imageUrl": "https://user-images.githubusercontent.com/48934537/96865227-a461d880-14a4-11eb-816c-5022510185b2.png"
 	    			          },
 	    			          "items": [
 	    			            {

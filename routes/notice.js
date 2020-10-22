@@ -43,6 +43,9 @@ router.post('/admission', function(req, res, next) {
 	    const $bodyList = $("#news_list_new li");	    
 
 	    $bodyList.each(function(i, elem) {
+	    	if(i > 3){
+	    		return false;
+	    	}
 	      ulList[i] = {
 	          title: $(this).find('a').text().trim(),
 	          url: "https://cms.itc.ac.kr/site/mobile/" + String($(this).find('a').attr('href')),
@@ -62,6 +65,7 @@ router.post('/admission', function(req, res, next) {
 	    			        "listCard": {
 	    			          "header": {
 	    			            "title": "공지사항",
+	    			            "imageUrl": "https://user-images.githubusercontent.com/48934537/96865227-a461d880-14a4-11eb-816c-5022510185b2.png"
 	    			          },
 	    			          "items": [
 	    			            {
@@ -168,6 +172,7 @@ router.post('/campuslife', function(req, res, next) {
 	    			        "listCard": {
 	    			          "header": {
 	    			            "title": "공지사항",
+	    			            "imageUrl": "https://user-images.githubusercontent.com/48934537/96865227-a461d880-14a4-11eb-816c-5022510185b2.png"
 	    			          },
 	    			          "items": [
 	    			            {
@@ -282,6 +287,7 @@ router.post('/plan', function(req, res, next) {
 	    			        "listCard": {
 	    			          "header": {
 	    			            "title": "주간 주요일정",
+	    			            "imageUrl": "https://user-images.githubusercontent.com/48934537/96865227-a461d880-14a4-11eb-816c-5022510185b2.png"
 	    			          },
 	    			          "items": [
 	    			            {

@@ -190,16 +190,17 @@ router.post('/name', function(req, res, next) {
 	    const $ = cheerio.load(html.data);
 	    const $bodyList = $("table.cts_table tbody tr");
 	    var td;
-	    
+
 	    $bodyList.each(function(i, elem) {
 	    	td = $(this);
 		      ulList[i] = {
 		          title : td.find('td:nth-of-type(3)').text() + " : " + td.find('td:nth-of-type(4)').text(),
 		          description : (td.find('td:nth-of-type(1)').text() + " " + td.find('td:nth-of-type(2)').text()).trim()
 		      };
+		      if(i>=3) return false;
 		});
 	    
-	    var data_length = ulList.length;
+	    var data_length = $bodyList.length;
 	    const data = ulList.filter(n => n.title);
 	    
 	    if(data[0].description == '검색 결과가 없습니다'){
@@ -224,7 +225,7 @@ router.post('/name', function(req, res, next) {
 	    			    }
 	    			}
 	    	);
-	    }else if(ulList.length<=4){
+	    }else if(data_length<=4){
 	    	res.status(200).json(
 		    		{
 		    			  "version": "2.0",
@@ -234,6 +235,7 @@ router.post('/name', function(req, res, next) {
 		    			        "listCard": {
 		    			          "header": {
 		    			            "title": "'" + phone_name + "' 전화번호 검색결과 " + data_length + "건",
+		    			            "imageUrl": "https://user-images.githubusercontent.com/48934537/96865227-a461d880-14a4-11eb-816c-5022510185b2.png"
 		    			          },
 		    			          "items": data
 		    			        }
@@ -259,6 +261,7 @@ router.post('/name', function(req, res, next) {
 		    			        "listCard": {
 		    			          "header": {
 		    			            "title": "'" + phone_name + "' 전화번호 검색결과 " + data_length + "건",
+		    			            "imageUrl": "https://user-images.githubusercontent.com/48934537/96865227-a461d880-14a4-11eb-816c-5022510185b2.png"
 		    			          },
 		    			          "items": data.slice(0,4),
 		    			          "buttons": [
@@ -329,9 +332,10 @@ router.post('/dept', function(req, res, next) {
 		          title : td.find('td:nth-of-type(3)').text() + " : " + td.find('td:nth-of-type(4)').text(),
 		          description : (td.find('td:nth-of-type(1)').text() + " " + td.find('td:nth-of-type(2)').text()).trim()
 		      };
+		      if(i>=3) return false;
 		});
 	    
-	    var data_length = ulList.length;
+	    var data_length = $bodyList.length;
 	    const data = ulList.filter(n => n.title);
 	    
 	    if(data[0].description == '검색 결과가 없습니다'){
@@ -356,7 +360,7 @@ router.post('/dept', function(req, res, next) {
 	    			    }
 	    			}
 	    	);
-	    }else if(ulList.length<=4){
+	    }else if(data_length<=4){
 	    	res.status(200).json(
 		    		{
 		    			  "version": "2.0",
@@ -366,6 +370,7 @@ router.post('/dept', function(req, res, next) {
 		    			        "listCard": {
 		    			          "header": {
 		    			            "title": "'" + phone_dept + "' 전화번호 검색결과 " + data_length + "건",
+		    			            "imageUrl": "https://user-images.githubusercontent.com/48934537/96865227-a461d880-14a4-11eb-816c-5022510185b2.png"
 		    			          },
 		    			          "items": data
 		    			        }
@@ -391,6 +396,7 @@ router.post('/dept', function(req, res, next) {
 		    			        "listCard": {
 		    			          "header": {
 		    			            "title": "'" + phone_dept + "' 전화번호 검색결과 " + data_length + "건",
+		    			            "imageUrl": "https://user-images.githubusercontent.com/48934537/96865227-a461d880-14a4-11eb-816c-5022510185b2.png"
 		    			          },
 		    			          "items": data.slice(0,4),
 		    			          "buttons": [
