@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/imsoncod/NaTaBee.svg?branch=master)](https://travis-ci.com/imsoncod/NaTaBee)
+
 # Intensive-Capstone-Design
 
   2020-2학기 심화 캡스톤디자인 프로젝트
