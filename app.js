@@ -4,7 +4,7 @@ var app = express();
 var bodyParser = require('body-parser');
 
 //express 서버 포트 설정
-app.set('port', process.env.PORT || 8087);
+app.set('port', process.env.PORT || 8080);
 
 //서버 생성
 http.createServer(app).listen(app.get('port'), function(){
