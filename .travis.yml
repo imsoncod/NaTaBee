@@ -26,7 +26,7 @@ deploy: # 배포
     local_dir: deploy # deploy 디렉터리에 있는 파일을 s3로 업로드 하겠다는 의미
     wait_until_deployed: true
     on:
-      repo: imsoncod/GitHub-Travis-AWS-Testing # Github 주소
+      repo: imsoncod/NaTaBee # Github 주소
       branch: master
   - provider: codedeploy # AWS CodeDeploy를 의미
     access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
@@ -39,7 +39,7 @@ deploy: # 배포
     region: ap-northeast-2
     wait_until_deployed: true
     on:
-      repo: imsoncod/GitHub-Travis-AWS-Testing
+      repo: imsoncod/NaTaBee
       branch: master  
 
 notifications:
