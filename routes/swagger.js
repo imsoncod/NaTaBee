@@ -70,7 +70,7 @@ module.exports = {
 		      description: '인하공전 도우미 챗봇 NaTaBee API'
 		    },
 		    // 주소
-		    host: "localhost:8087",
+		    host: "3.35.143.128:8080/",
 		    // 기본 root path
 		    basePath: "/natabee",
 		    contact: {
