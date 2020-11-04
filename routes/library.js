@@ -350,7 +350,7 @@ router.post('/seat', function(req, res){
 		);
 	}
 	
-	var url = "http://221.154.90.171:8085/MA/roomList.php?userId=" + user_id;
+	var url = "http://seat.inhatc.ac.kr/MA/roomList.php?userId=" + user_id;
 
 	res.status(200).json(		
 			{
