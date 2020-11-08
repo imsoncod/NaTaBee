@@ -551,3 +551,5 @@ describe('POST /natabee/phone 전화번호 검색 API', () => {
 			});
 	});
 });
+
+process.exit();
