@@ -548,8 +548,7 @@ describe('POST /natabee/phone 전화번호 검색 API', () => {
 					throw err;
 				}
 				done();
+				process.exit();
 			});
 	});
 });
-
-process.exit();
