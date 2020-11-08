@@ -201,7 +201,7 @@ router.post('/search', function(req, res, next) {
 	    	var mPublisher = book_list[i].Publisher;
 	    	var mImageUrl = 'https://library.inhatc.ac.kr/cheetah/Shared/CoverImage?Cno=' + book_list[i].Cno;
 	    	var mUrl = 'https://library.inhatc.ac.kr/Cheetah/Search/AdvenceSearch#/basic/detail/' + book_list[i].Cno;
-	    	console.log(mImageUrl);
+
 	    	ulList[i] = {
 	    		title : mTitle,
 	    		description : mAuthor + ' / ' + mPublisher,
