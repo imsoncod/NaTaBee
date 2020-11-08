@@ -4,12 +4,12 @@
   "description": "NaTaBee",
   "main": "app.js",
   "scripts": {
-	"start": "pm2 start app.js",
-	"test": "exit"
+    "start": "pm2 start app.js",
+    "test": "mocha app.spec.js"
   },
   "repository": {
-	"type": "git",
-	"url": "git://github.com/imsoncod/NaTaBee.git"
+    "type": "git",
+    "url": "git://github.com/imsoncod/NaTaBee.git"
   },
   "keywords": [
     "node.js",
@@ -26,9 +26,12 @@
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "html-entities": "^1.3.1",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "should": "^13.2.3"
   },
   "devDependencies": {
+    "mocha": "^8.2.1",
+    "supertest": "^6.0.1",
     "swagger-jsdoc": "^4.2.3",
     "swagger-ui-express": "^4.1.4"
   }
