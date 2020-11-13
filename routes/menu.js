@@ -44,6 +44,7 @@ router.post('/student', function(req, res, next) {
 	  var week = new Array('일','월','화','수','목','금','토');
 	  
 	  var today = new Date(); 
+	  today.setHours(today.getHours()+9);
 	  var year = today.getFullYear(); 
 	  var month = new String(today.getMonth()+1); 
 	  var date = new String(today.getDate());
@@ -199,7 +200,8 @@ router.post('/professor', function(req, res, next) {
 	  
 	  var week = new Array('일','월','화','수','목','금','토');
 	  
-	  var today = new Date(); 
+	  var today = new Date();
+	  today.setHours(today.getHours()+9);
 	  var year = today.getFullYear(); 
 	  var month = new String(today.getMonth()+1); 
 	  var date = new String(today.getDate());
