@@ -189,3 +189,25 @@
   * GitHub - Travis - AWS 연동 및 Build Testing 완료
   
   * AWS S3 - CodeDeploy - EC2 연동 
+
+<br>
+
+### 📅 2020-11-02 ~ 2020-11-08
+
+* [CI, CD]
+
+  * Travis - S3 - CodeDeploy 배포 자동화 완료
+  
+  * 배포 후 Slack 알림 연동 완료
+  
+  * Nodejs Build Testing 구현 완료(Mocha 라이브러리 사용)
+  
+<br>
+
+### 📅 2020-11-09 ~ 2020-11-15
+
+* [서비스]
+
+  * 베타 서비스 오푼
+  
+  * 사용자 요구사항 설문 진행
