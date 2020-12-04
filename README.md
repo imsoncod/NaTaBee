@@ -68,6 +68,56 @@
 
 <br>
 
+## 서비스 소개
+
+  ![image](https://user-images.githubusercontent.com/48934537/101139871-8667c600-3655-11eb-949b-fac1b0d6ecac.png)
+  
+  <br>
+  
+  ![image](https://user-images.githubusercontent.com/48934537/101139985-abf4cf80-3655-11eb-9e14-6fd248bf8e45.png)
+  
+  <br>
+  
+  ![image](https://user-images.githubusercontent.com/48934537/101140280-17d73800-3656-11eb-8036-d2c81cf9cba6.png)
+
+  <br>
+  
+  ![image](https://user-images.githubusercontent.com/48934537/101141108-2bcf6980-3657-11eb-9c68-7169dd8b8421.png)
+  
+  <br>
+  
+  ![image](https://user-images.githubusercontent.com/48934537/101141395-97b1d200-3657-11eb-99a0-f7c404a8a8f8.png)
+  
+  <br>
+  
+  ![image](https://user-images.githubusercontent.com/48934537/101141528-c29c2600-3657-11eb-9e69-31503f47bf30.png)
+  
+  <br>
+  
+  ![image](https://user-images.githubusercontent.com/48934537/101141690-fecf8680-3657-11eb-908c-9437512c0e44.png)
+
+  <br>
+  
+  ![image](https://user-images.githubusercontent.com/48934537/101141742-10b12980-3658-11eb-8737-720a46bf5100.png)
+  
+  <br>
+  
+  ![image](https://user-images.githubusercontent.com/48934537/101141873-3c341400-3658-11eb-8d2a-f5267c5bbc96.png)
+  
+  <br>
+
+  ![image](https://user-images.githubusercontent.com/48934537/101141954-50781100-3658-11eb-8373-2eafd5bfc64d.png)
+  
+  <br>
+  
+  ![image](https://user-images.githubusercontent.com/48934537/101142029-6ab1ef00-3658-11eb-8bc0-3b44e490cbc1.png)
+  
+  <br>
+  
+  ![image](https://user-images.githubusercontent.com/48934537/101142113-874e2700-3658-11eb-93ae-27e857bd014c.png)
+
+<br>
+
 ## 프로젝트 진행 과정 기록
 
 ### 📅 2020-08-31 ~ 2020-09-06
