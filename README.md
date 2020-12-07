@@ -148,7 +148,7 @@
 
 * [기능 구성도]
 
-  ![image](https://user-images.githubusercontent.com/48934537/93453223-5f321000-f914-11ea-8ce0-7533ace58ad9.png)
+  ![기능구성도](https://user-images.githubusercontent.com/48934537/101350400-3ba6b200-38d2-11eb-87c9-3ecefc808a01.png)
   
 * [개발 세부 내용]
 
