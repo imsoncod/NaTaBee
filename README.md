@@ -34,6 +34,22 @@
 
 <br>
 
+## 🛠기술 스택
+
+Framework : `Nodejs(Express)`
+
+Front-end : `Kakao i openbuilder`
+
+Back-end : `Javascript`
+
+CI / CD : `Travis`
+
+AWS : `EC2, S3, CodeDeploy`
+
+Etc : `Git, GitHub, RESTAPI, Swagger`
+
+<br>
+
 ## 프로젝트 구성도
 
 ```
