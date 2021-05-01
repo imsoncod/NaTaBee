@@ -60,23 +60,22 @@
  *             type: object
  */
 
-//Swagger
-module.exports = {
-		  swaggerDefinition: {
-		    // 정보
-		    info: {
-		      title: 'NaTaBee',
-		      version: '1.0.0',
-		      description: '인하공전 도우미 챗봇 NaTaBee API'
-		    },
-		    // 주소
-		    host: "3.35.143.128:8080",
-		    // 기본 root path
-		    basePath: "/natabee",
-		    contact: {
-		      email: "iustron@naver.com"
-		    },
-		    schemes: ["http", "https"] // 가능한 통신 방식
-		  },
-		  apis: ['./routes/*.js'] // api 파일 위치들 
-		};
+export const swaggerOption = {
+	swaggerDefinition: {
+		// 정보
+		info: {
+			title: 'NaTaBee',
+			version: '1.0.0',
+			description: '인하공전 도우미 챗봇 NaTaBee API'
+		},
+		// 주소
+		host: "3.35.143.128:8080",
+		// 기본 root path
+		basePath: "/natabee",
+		contact: {
+			email: "iustron@naver.com"
+		},
+		schemes: ["http", "https"] // 가능한 통신 방식
+	},
+	apis: ['../api/etc/*.router.ts'] // api 파일 위치들 
+};
