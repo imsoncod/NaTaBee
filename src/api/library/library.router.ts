@@ -6,7 +6,7 @@ export const libraryRouter = () => {
     const controller = new LibraryController();
 
     router.post('/search', controller.getBooklist);
-    router.post('/seast', controller.registSeat);
+    router.post('/seat', controller.registSeat);
 
     return router;
 }

@@ -13,7 +13,7 @@ export class InfoController {
 				"title": market.title,
 				"description": `${market.kind} / ${market.date}`,
 				"link": {
-					"web": r.viewLink,
+					"web": market.viewLink,
 				}
 			});
 		}
@@ -62,7 +62,7 @@ export class InfoController {
 				"title": lost.title,
 				"description": `${lost.kind} / ${lost.date}`,
 				"link": {
-					"web": r.viewLink,
+					"web": lost.viewLink,
 				}
 			});
 		}

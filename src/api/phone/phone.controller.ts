@@ -17,11 +17,8 @@ export class PhoneController {
 		const items = [];
 		for await (const phone of r.phoneList){
 			items.push({
-				"title": phone.title,
-				"description": phone.date,
-				"link": {
-					"web": phone.viewLink,
-				}
+				"title": `${phone.name} : ${phone.phone}`,
+				"description": phone.dept,
 			});
 		}
 
@@ -90,11 +87,8 @@ export class PhoneController {
 		const items = [];
 		for await (const phone of r.phoneList){
 			items.push({
-				"title": phone.title,
-				"description": phone.date,
-				"link": {
-					"web": phone.viewLink,
-				}
+				"title": `${phone.name} : ${phone.phone}`,
+				"description": phone.dept,
 			});
 		}
 
