@@ -5,7 +5,7 @@ import cheerio from 'cheerio';
 export class PhoneController {
 	/* 전화번호_성명 */
 	getPhoneByName = async (req: Request, res: Response) => {
-		const findWord: string = req.body.action.params.findWord;
+		const findWord = req.body.action.params.findWord;
 
 		const params = {
 			findType: 'NAME',

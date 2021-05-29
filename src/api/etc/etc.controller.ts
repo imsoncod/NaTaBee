@@ -4,7 +4,7 @@ import cheerio from 'cheerio';
 
 export class EtcController {
 	/* 학과명 입력 */
-	getDeptInfo = async (req: Request, res: Response) => {
+	getDeptInfo = async (req:any, res:any) => {
 		const deptName: string = req.body.action.params.deptName;
 		
 		const params = {
@@ -13,7 +13,7 @@ export class EtcController {
 
 		const r = await (await axios.get('http://52.79.162.84:8081/etc/dept', { params })).data.data;
 
-		if (r.data.text) {
+		if (r.text) {
 			res.status(200).json(
 				{
 					"version": "2.0",
