@@ -13,5 +13,5 @@ export const router = (app : any) => {
     app.use('/natabee/menu/', menuRouter());
     app.use('/natabee/info/', infoRouter());
     app.use('/natabee/etc/', etcRouter());
-    app.use('/natebee/chitchat', chitchatRouter());
+    app.use('/natabee/chitchat/', chitchatRouter());
 }

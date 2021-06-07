@@ -5,7 +5,7 @@ export const chitchatRouter = () => {
     const router = Router();
     const controller = new ChitchatController();
 	
-    router.post('/chitchat', controller.getMessage);
+    router.post('/', controller.getMessage);
 
     return router;
 }
