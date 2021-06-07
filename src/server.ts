@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 
 const options = {
     host : '0.0.0.0',
-    port : 80
+    port : 8080
 }
 
 app.listen(options, () => {
