@@ -4,6 +4,7 @@ import { libraryRouter } from './api/library/library.router';
 import { menuRouter } from './api/menu/menu.router';
 import { noticeRouter } from './api/notice/notice.router';
 import { phoneRouter } from './api/phone/phone.router';
+import { chitchatRouter } from './api/chitchat/chitchat.router';
 
 export const router = (app : any) => {
     app.use('/natabee/notice/', noticeRouter());
@@ -12,4 +13,5 @@ export const router = (app : any) => {
     app.use('/natabee/menu/', menuRouter());
     app.use('/natabee/info/', infoRouter());
     app.use('/natabee/etc/', etcRouter());
+    app.use('/natebee/chitchat', chitchatRouter());
 }
